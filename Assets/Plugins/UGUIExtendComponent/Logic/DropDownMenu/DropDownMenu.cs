@@ -12,8 +12,8 @@ namespace UnityEngine.UI.Logic
         public delegate void ON_SELECTED_CALLBACK(T item);
         public ON_SELECTED_CALLBACK onSelectedCallback;
 
-        private List<T> m_lLogicInsList;
-        private Dictionary<GameObject, T> m_dictLogicInsMapper;
+        protected List<T> m_lLogicInsList;
+        protected Dictionary<GameObject, T> m_dictLogicInsMapper;
 
         private T m_tCurSelectedItem;
 
@@ -70,6 +70,18 @@ namespace UnityEngine.UI.Logic
                 }
                 m_tCurSelectedItem = item;
                 m_compMonoCtrl.CurItemDesc = item.GetItemDesc();
+            }
+        }
+
+        public void SetCurSelectedItemByDesc(string desc)
+        {
+            for (int i = 0; i < m_lLogicInsList.Count; ++i)
+            {
+                if (desc == m_lLogicInsList[i].GetItemDesc())
+                {
+                    CurSelectedItem = m_lLogicInsList[i];
+                    return;
+                }
             }
         }
 
