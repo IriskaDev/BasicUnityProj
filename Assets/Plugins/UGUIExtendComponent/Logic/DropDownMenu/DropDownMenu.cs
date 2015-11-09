@@ -87,13 +87,12 @@ namespace UnityEngine.UI.Logic
 
         private void OnItemSelected(GameObject itemObj)
         {
-            if (onSelectedCallback != null)
+            T item;
+            if (m_dictLogicInsMapper.TryGetValue(itemObj, out item))
             {
-                T item;
-                if (m_dictLogicInsMapper.TryGetValue(itemObj, out item))
-                {
+                CurSelectedItem = item;
+                if (onSelectedCallback != null)
                     onSelectedCallback.Invoke(item);
-                }
             }
         }
 
