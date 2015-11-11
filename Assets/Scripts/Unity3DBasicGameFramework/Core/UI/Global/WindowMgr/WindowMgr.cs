@@ -83,6 +83,8 @@ public partial class WindowMgr : Singleton<WindowMgr>
             try
             {
 #endif
+                tmpIns.GetRoot().SetActive(true);
+                tmpIns.GetRoot().transform.SetAsLastSibling();
                 tmpIns.StartListener();
                 tmpIns.StartUp(param.Params);
 #if !_DEBUG
