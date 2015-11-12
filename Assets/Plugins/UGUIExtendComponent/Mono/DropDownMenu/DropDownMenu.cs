@@ -165,7 +165,7 @@ namespace UnityEngine.UI
             List<DropDownMenuItem> newItemList = new List<DropDownMenuItem>();
             for (int i = 0; i < itemDescList.Count; ++i)
             {
-                AddItemObj(itemDescList[i]);
+                newItemList.Add(AddItemObj(itemDescList[i]));
             }
             ResizeMenu();
             return newItemList;

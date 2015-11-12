@@ -5,7 +5,7 @@ using System.Text;
 
 namespace UnityEngine.UI.Logic
 {
-    public class DropDownMenu<T> where T: IDropDownMenuItem
+    public class DropDownMenu<T> where T: class, IDropDownMenuItem
     {
         private DropDownMenu m_compMonoCtrl;
 
@@ -53,6 +53,26 @@ namespace UnityEngine.UI.Logic
         {
             m_lLogicInsList.Remove(item);
             m_dictLogicInsMapper.Remove(item.GetItemObj());
+            if (item == CurSelectedItem)
+            {
+                if (m_lLogicInsList.Count > 0)
+                    CurSelectedItem = m_lLogicInsList[0];
+                else
+                    CurSelectedItem = default(T);
+            }
+            m_compMonoCtrl.RemoveItem(item.GetItemObj());
+        }
+
+        public void ClearAllItem()
+        {
+            for (int i = 0; i < m_lLogicInsList.Count; ++i)
+            {
+                m_compMonoCtrl.RemoveItem(m_lLogicInsList[i].GetItemObj());
+            }
+            CurSelectedItem = default(T);
+
+            m_lLogicInsList.Clear();
+            m_dictLogicInsMapper.Clear();
         }
 
         public T CurSelectedItem
@@ -63,6 +83,12 @@ namespace UnityEngine.UI.Logic
             }
             set
             {
+                if (value == default(T))
+                {
+                    m_tCurSelectedItem = default(T);
+                    m_compMonoCtrl.CurItemDesc = "None";
+                    return;
+                }
                 T item;
                 if (!m_dictLogicInsMapper.TryGetValue(value.GetItemObj(), out item))
                 {
