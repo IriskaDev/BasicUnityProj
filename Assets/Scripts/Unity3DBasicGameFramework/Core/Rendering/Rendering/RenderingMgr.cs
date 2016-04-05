@@ -64,6 +64,7 @@ namespace Rendering
             ForceTerminateRendering();
             m_csScreen.FFrameBuffer = new RenderTexture(Screen.width, Screen.height, 24);
             m_csScreen.BFrameBuffer = new RenderTexture(Screen.width, Screen.height, 24);
+            SetUpTestCam();
             m_vec2Resolution = new Vector2(Screen.width, Screen.height);
             SetFrameBuffer();
             float y = m_csScreen.ProcessCam.orthographicSize * 2.0f;
@@ -74,6 +75,21 @@ namespace Rendering
 
 
             ResumeRendering();
+        }
+
+        private void SetUpTestCam()
+        {
+            GameObject obj1 = new GameObject();
+            obj1.name = "FFrameBufferHolder";
+            Camera cam1 = obj1.AddComponent<Camera>();
+            cam1.enabled = false;
+            cam1.targetTexture = m_csScreen.FFrameBuffer;
+
+            GameObject obj2 = new GameObject();
+            obj2.name = "BFrameBufferHolder";
+            Camera cam2 = obj2.AddComponent<Camera>();
+            cam2.enabled = false;
+            cam2.targetTexture = m_csScreen.BFrameBuffer;
         }
 
     }

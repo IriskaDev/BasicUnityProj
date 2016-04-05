@@ -83,6 +83,8 @@ namespace Rendering
                 m_camTarget.targetTexture = RenderingMgr.Instance.CFrameBuffer;
             }
             Update(dt);
+            //if (renderToFrameBuffer)
+            //    m_camTarget.targetTexture = null;
             m_camTarget.Render();
         }
 

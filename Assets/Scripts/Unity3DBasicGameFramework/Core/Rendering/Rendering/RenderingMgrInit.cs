@@ -42,7 +42,7 @@ namespace Rendering
             renderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
             renderer.receiveShadows = false;
             renderer.useLightProbes = false;
-            m_csScreen.DefaultShader = Shader.Find("UI/Default");
+            m_csScreen.DefaultShader = Shader.Find("Unlit/Texture");
             m_csScreen.DefaultMat = new Material(m_csScreen.DefaultShader);
             renderer.material = m_csScreen.DefaultMat;
             m_csScreen.ScreenQuad.transform.SetParent(m_csScreen.ScreenRoot.transform, false);
