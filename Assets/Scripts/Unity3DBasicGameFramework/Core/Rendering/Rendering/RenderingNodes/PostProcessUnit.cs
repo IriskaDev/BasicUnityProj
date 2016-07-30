@@ -67,7 +67,7 @@ namespace Rendering
         {
             if (m_postProcessShader == null)
             {
-                throw new Exception("PLEASE DO SET m_postProcessShader IN YOUR CLASS' CONSTRUCT FUNCION!!!");
+                throw new Exception("PLEASE DO SET m_postProcessShader IN YOUR CLASS' CONSTRUCT FUNCTION!!!");
             }
             m_matScreenMat.shader = m_postProcessShader;
         }

@@ -34,10 +34,11 @@ namespace Rendering
             m_camProcessor.cullingMask = 0;
             m_camProcessor.targetTexture = m_csScreen.FFrameBuffer;
             m_camProcessor.Render();
-            m_camProcessor.targetTexture = m_csScreen.BFrameBuffer;
-            m_camProcessor.Render();
-            m_camProcessor.cullingMask = culling;
-            m_camProcessor.clearFlags = flag;
+
+            //m_camProcessor.targetTexture = m_csScreen.BFrameBuffer;
+            //m_camProcessor.Render();
+            //m_camProcessor.cullingMask = culling;
+            //m_camProcessor.clearFlags = flag;
         }
 
         private void ResetScreen()
@@ -65,7 +66,7 @@ namespace Rendering
             }
         }
 
-        //mighit have a better way to implement it;
+        //might have a better way to implement it;
         private void ForceTerminateRendering()
         {
             m_camProcessor.targetTexture = null;
@@ -85,9 +86,11 @@ namespace Rendering
             m_driver.onPreRender = null;
         }
 
-        public void PauseRendering()
+        public void PauseRendering(bool noImgOutput = false)
         {
-            m_csScreen.OutputCamObj.SetActive(false);
+            m_driver.onPreRender = null;
+            if (noImgOutput)
+                m_csScreen.OutputCamObj.SetActive(false);
         }
 
         public void ResumeRendering()
