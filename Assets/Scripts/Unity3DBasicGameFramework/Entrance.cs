@@ -37,5 +37,8 @@ public class Entrance : MonoBehaviour {
 
         if (count == 1100)
             Rendering.RenderingMgr.Instance.ResumeRendering();
+
+        if (count == 1300)
+            Rendering.RenderingMgr.Instance.AddUnitAtLast(bawppu);
     }
 }
