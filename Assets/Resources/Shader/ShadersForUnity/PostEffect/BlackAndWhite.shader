@@ -1,3 +1,5 @@
+// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
 Shader "PostEffect/BlackAndWhite"
 {
 	Properties
@@ -32,7 +34,7 @@ Shader "PostEffect/BlackAndWhite"
 			v2f vert(appdata_full input)
 			{
 				v2f o;
-				o.pos = mul(UNITY_MATRIX_MVP, input.vertex);
+				o.pos = UnityObjectToClipPos(input.vertex);
 				o.uv = TRANSFORM_TEX(input.texcoord, _MainTex);
 
 				return o;

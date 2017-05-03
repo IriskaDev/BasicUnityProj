@@ -1,3 +1,5 @@
+// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
 Shader "NatureEffect/FakeAtmosphereScattering"
 {
 	Properties
@@ -46,7 +48,7 @@ Shader "NatureEffect/FakeAtmosphereScattering"
 			v2f vert(appdata_full input)
 			{
 				v2f o;
-				o.pos = mul(UNITY_MATRIX_MVP, input.vertex);
+				o.pos = UnityObjectToClipPos(input.vertex);
 				o.uv = TRANSFORM_TEX(input.texcoord, _MainTex);
 				o.vertex = input.vertex;
 				o.normal = input.normal;

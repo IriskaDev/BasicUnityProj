@@ -1,4 +1,6 @@
-﻿Shader "Custom/MotionBlur" {
+﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
+Shader "Custom/MotionBlur" {
 	Properties {
 		_MainTex ("Base (RGB)", 2D) = "white" {}
 		_DepthTex ("Depth Texture", 2D) = "white" {}
@@ -21,7 +23,7 @@
 	v2f_simple vert (appdata_img v)
 	{
 		v2f_simple o;
-		o.pos = mul (UNITY_MATRIX_MVP, v.vertex);
+		o.pos = UnityObjectToClipPos (v.vertex);
 		o.hPos = o.pos;
 		o.uv = v.texcoord.xy;
 		return o;

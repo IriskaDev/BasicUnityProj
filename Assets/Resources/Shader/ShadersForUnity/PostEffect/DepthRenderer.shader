@@ -1,4 +1,6 @@
-﻿Shader "PostEffect/DepthRenderer" {
+﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
+Shader "PostEffect/DepthRenderer" {
 	SubShader {
 		Tags { "RenderType"="Opaque" }
 
@@ -17,7 +19,7 @@
 		{
 			v2f o;
 
-			o.vertex = mul(UNITY_MATRIX_MVP, v.vertex);
+			o.vertex = UnityObjectToClipPos(v.vertex);
 			o.depth = COMPUTE_DEPTH_01;
 
 			return o;
