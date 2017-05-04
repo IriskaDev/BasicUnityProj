@@ -15,8 +15,8 @@ public class Login : WindowBase {
         m_ifAcc = m_transInstanceRoot.FindChild("Acc").GetComponent<InputField>();
         m_objBTNLogin = m_transInstanceRoot.FindChild("BtnLogin").gameObject;
         m_objBTNExit = m_transInstanceRoot.FindChild("BtnExit").gameObject;
-        UGUIEventHandler.AddListener(m_objBTNLogin, UGUIEventType.POINTER_CLICK, OnLoginClick);
-        UGUIEventHandler.AddListener(m_objBTNExit, UGUIEventType.POINTER_CLICK, OnExit);
+        UGUIEvtHandler.AddListener(m_objBTNLogin, UGUIEvtType.POINTER_CLICK, OnLoginClick);
+        UGUIEvtHandler.AddListener(m_objBTNExit, UGUIEvtType.POINTER_CLICK, OnExit);
     }
 
     private void OnLoginClick(PointerEventData evtDat)
