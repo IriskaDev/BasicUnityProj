@@ -12,7 +12,7 @@ public class Entrance : MonoBehaviour {
         bawppu = new Rendering.PostProcessUnits.PPUBlackAndWhite();
         WindowMgr.Instance.Init();
         //Dispatcher.Dispatch<int>(GameEvents.WindowStartUpEvent.EVT_NAME, UIModule.LOGIN);
-        Rendering.RenderingMgr.Instance.AddUnitAtLast(bawppu);
+        
 
         //Rendering.PostProcessUnits.PPUBlackAndWhite testppu1 = new Rendering.PostProcessUnits.PPUBlackAndWhite();
         //Rendering.RenderingMgr.Instance.AddUnitAtLast(testppu1);
@@ -23,6 +23,9 @@ public class Entrance : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         count++;
+        if (count == 150)
+            Rendering.RenderingMgr.Instance.AddUnitAtLast(bawppu);
+
         if (count == 300)
             Rendering.RenderingMgr.Instance.RemoveNode(bawppu);
 

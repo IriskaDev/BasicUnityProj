@@ -6,5 +6,5 @@ using System.Text;
 
 public static class UIModule
 {
-    //public const int LOGIN = 10001;
+    public const int LOGIN = 10001;
 }

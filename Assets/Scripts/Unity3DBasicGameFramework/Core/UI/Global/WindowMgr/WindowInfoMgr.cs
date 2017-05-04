@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 
 public struct WindowInfo
 {
@@ -12,16 +9,18 @@ public struct WindowInfo
 
 public static class WindowInfoMgr
 {
-    private static Dictionary<int, WindowInfo> m_dictWinInfoMapper = new Dictionary<int, WindowInfo>();
-
-    public static void Init()
+    private static Dictionary<int, WindowInfo> m_dictWinInfoMapper = new Dictionary<int, WindowInfo>()
     {
-        //WindowInfo loginInfo;
-        //loginInfo.ModuleID = UIModule.LOGIN;
-        //loginInfo.ResName = "UGUILogin";
-        //loginInfo.UniqeWindow = true;
-        //m_dictWinInfoMapper.Add(UIModule.LOGIN, loginInfo);
-    }
+        {
+            UIModule.LOGIN,
+            new WindowInfo
+            {
+                ModuleID = UIModule.LOGIN,
+                ResName = "UGUILogin",
+                UniqeWindow = true
+            }
+        }
+    };
 
     public static WindowInfo GetWindowInfo(int moduleId)
     {
