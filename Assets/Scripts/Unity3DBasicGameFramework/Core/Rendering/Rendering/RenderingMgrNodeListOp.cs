@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace Rendering
 {
@@ -11,72 +8,80 @@ namespace Rendering
         {
             if (unit == null)
                 return;
-            m_llRenderingNodeList.AddFirst(unit);
             unit.BaseInit();
+            m_llRenderingNodeList.AddFirst(unit);
         }
 
         public void AddUnitAtLast(IRenderingNode unit)
         {
             if (unit == null)
                 return;
-            m_llRenderingNodeList.AddLast(unit);
+            if (m_llRenderingNodeList.Contains(unit))
+            {
+#if _DEBUG
+                UnityEngine.Debug.LogError("Trying to add one unit twice!!!");
+                UnityEngine.Debug.LogError(UnityEngine.StackTraceUtility.ExtractStackTrace());
+#endif
+                return;
+            }
             unit.BaseInit();
+            m_llRenderingNodeList.AddLast(unit);
         }
 
         public void AddUnitAfterNode(IRenderingNode unit, LinkedListNode<IRenderingNode> node)
         {
             if (node == null || unit == null)
                 return;
-            m_llRenderingNodeList.AddAfter(node, unit);
             unit.BaseInit();
+            m_llRenderingNodeList.AddAfter(node, unit);
         }
 
         public void AddUnitBeforeNode(IRenderingNode unit, LinkedListNode<IRenderingNode> node)
         {
             if (node == null || unit == null)
                 return;
-            m_llRenderingNodeList.AddBefore(node, unit);
             unit.BaseInit();
+            m_llRenderingNodeList.AddBefore(node, unit);
         }
 
         public void AddCrucialUnitAtFirst(string unitName, IRenderingNode unit)
         {
             if (unit == null)
                 return;
+            unit.BaseInit();
             LinkedListNode<IRenderingNode> newUnit = new LinkedListNode<IRenderingNode>(unit);
             m_dicCrucialNodes.Add(unitName, newUnit);
             m_llRenderingNodeList.AddFirst(newUnit);
-            unit.BaseInit();
         }
 
         public void AddCrucialUnitAtLast(string unitName, IRenderingNode unit)
         {
             if (unit == null)
                 return;
+            unit.BaseInit();
             LinkedListNode<IRenderingNode> newUnit = new LinkedListNode<IRenderingNode>(unit);
             m_dicCrucialNodes.Add(unitName, newUnit);
             m_llRenderingNodeList.AddLast(newUnit);
-            unit.BaseInit();
         }
 
         public void AddCrucialUnitAfterNode(string unitName, IRenderingNode unit, LinkedListNode<IRenderingNode> node)
         {
             if (node == null || unit == null)
                 return;
+            unit.BaseInit();
             LinkedListNode<IRenderingNode> newUnit = new LinkedListNode<IRenderingNode>(unit);
             m_dicCrucialNodes.Add(unitName, newUnit);
             m_llRenderingNodeList.AddAfter(node, newUnit);
-            unit.BaseInit();
         }
 
         public void AddCrucialUnitBeforeNode(string unitName, IRenderingNode unit, LinkedListNode<IRenderingNode> node)
         {
             if (node == null || unit == null)
                 return;
+            unit.BaseInit();
             LinkedListNode<IRenderingNode> newUnit = new LinkedListNode<IRenderingNode>(unit);
             m_dicCrucialNodes.Add(unitName, newUnit);
             m_llRenderingNodeList.AddBefore(node, newUnit);
-            unit.BaseInit();
         }
 
         public void RemoveNode(IRenderingNode unit)

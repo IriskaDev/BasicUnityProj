@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 namespace Rendering
@@ -25,15 +22,22 @@ namespace Rendering
             SetFrameBuffer();
         }
 
+        /// <summary>
+        /// clear current back frame buffer for further usage
+        /// nothing is done with front frame buffer
+        /// </summary>
         private void ClearBuffer()
         {
-
             int culling = m_camProcessor.cullingMask;
             CameraClearFlags flag = m_camProcessor.clearFlags;
             m_camProcessor.clearFlags = CameraClearFlags.Skybox;
             m_camProcessor.cullingMask = 0;
-            m_camProcessor.targetTexture = m_csScreen.FFrameBuffer;
+            m_camProcessor.targetTexture = m_csScreen.BFrameBuffer;
             m_camProcessor.Render();
+
+            // recover flags
+            m_camProcessor.cullingMask = culling;
+            m_camProcessor.clearFlags = flag;
 
             //m_camProcessor.targetTexture = m_csScreen.BFrameBuffer;
             //m_camProcessor.Render();
@@ -59,6 +63,7 @@ namespace Rendering
                     // if no next node, render to frame buffer immediately
                     iter.Value.Execute(dt, iter.Next == null);
                     iter.Value.BaseClear();
+                    //BufferSwap();
                 }
 
                 //finish processing, copy the CFrameBuffer to the real frame buffer

@@ -41,7 +41,6 @@ namespace Rendering
             MeshRenderer renderer = m_csScreen.ScreenQuad.GetComponent<MeshRenderer>();
             renderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
             renderer.receiveShadows = false;
-            renderer.useLightProbes = false;
             m_csScreen.DefaultShader = Shader.Find("Unlit/Texture");
             m_csScreen.DefaultMat = new Material(m_csScreen.DefaultShader);
             renderer.material = m_csScreen.DefaultMat;

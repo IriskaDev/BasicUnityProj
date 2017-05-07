@@ -37,6 +37,7 @@ namespace Rendering
             m_matScreenMat = RenderingMgr.Instance.ScreenInfo.DefaultMat;
             m_defaultShader = RenderingMgr.Instance.ScreenInfo.DefaultShader;
             m_camProcessor = RenderingMgr.Instance.ScreenInfo.ProcessCam;
+
             Reset();
             SetShaderParam();
             Init();
@@ -126,6 +127,7 @@ namespace Rendering
         {
             Update(dt);
             m_camProcessor.Render();
+
             //if not the last rendering node, render with ProcessCam
             //otherwise, render with OutputCam, And Render directly into the real frame buffer
             m_bNeedToUnsetShader = !renderToFrameBuffer;

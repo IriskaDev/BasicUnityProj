@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 namespace Rendering
 {
-    public struct ScreenStruct
+    public class ScreenStruct
     {
         public GameObject ScreenRoot;
         public GameObject ScreenQuad;
@@ -29,7 +29,7 @@ namespace Rendering
         private LinkedList<IRenderingNode> m_llRenderingNodeList;
         private Camera m_camProcessor;
         private RenderingDriver m_driver;
-        private ScreenStruct m_csScreen;
+        public ScreenStruct m_csScreen;
         private Ticker m_ticker;
         private Dictionary<string, LinkedListNode<IRenderingNode>> m_dicCrucialNodes;
 
@@ -38,6 +38,7 @@ namespace Rendering
         {
             m_dicCrucialNodes = new Dictionary<string, LinkedListNode<IRenderingNode>>();
             m_llRenderingNodeList = new LinkedList<IRenderingNode>();
+            m_csScreen = new ScreenStruct();
         }
 
         public RenderTexture CFrameBuffer

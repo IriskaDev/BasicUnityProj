@@ -29,7 +29,7 @@ public partial class WindowMgr
     public void Init()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
-        SceneManager.LoadSceneAsync("UIScene", LoadSceneMode.Additive);
+        SceneManager.LoadScene("UIScene", LoadSceneMode.Additive);
     }
 
     private void UISceneLoadedCallback(Scene scene, LoadSceneMode mode)
