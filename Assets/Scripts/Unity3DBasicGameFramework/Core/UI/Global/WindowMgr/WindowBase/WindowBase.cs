@@ -14,10 +14,28 @@ public class WindowBase : IWindow
     protected Ticker m_ticker;
     protected WindowInfo m_wiInfo;
 
+    private List<WindowWidgetBase> m_llWidgetList;
+
     protected WindowBase()
     {
-
+        m_llWidgetList = new List<WindowWidgetBase>();
     }
+
+    protected T CreateWidget<T>(GameObject widgetRoot) where T : WindowWidgetBase, new ()
+    {
+        T ins = new T();
+        ins.BaseInit(widgetRoot, this);
+        ins.Init();
+        m_llWidgetList.Add(ins);
+        return ins;
+    }
+
+    protected bool RemoveWidget(WindowWidgetBase ins)
+    {
+        m_llWidgetList.Remove(ins);
+        return true;
+    }
+
 
     public int GetModuleID()
     {
@@ -55,22 +73,34 @@ public class WindowBase : IWindow
 
     public virtual void StartUp(object param = null)
     {
-
+        for (int i = 0; i < m_llWidgetList.Count; ++i)
+        {
+            m_llWidgetList[i].StartUp(param);
+        }
     }
 
     public virtual void StartListener()
     {
-
+        for (int i = 0; i < m_llWidgetList.Count; ++i)
+        {
+            m_llWidgetList[i].StartListener();
+        }
     }
 
     public virtual void RemoveListener()
     {
-
+        for (int i = 0; i < m_llWidgetList.Count; ++i)
+        {
+            m_llWidgetList[i].RemoveListener();
+        }
     }
 
     public virtual void Clear()
     {
-
+        for (int i = 0; i < m_llWidgetList.Count; ++i)
+        {
+            m_llWidgetList[i].Clear();
+        }
     }
 
     protected void Close()
